@@ -1,7 +1,3 @@
-DROP TABLE students;
-DROP TABLE quizzes;
-DROP TABLE results;
-
 CREATE TABLE IF NOT EXISTS students(
    student_id INTEGER PRIMARY KEY AUTOINCREMENT,
    first_name TEXT NOT NULL,
