@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h3>{{ current_user }}'s Dashboard</h3>
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <p class=flashes>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    </p>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+
+<h5>Student Roster</h5>
+<table width="600px" border="1">
+    <tr>
+        <td width="200px"><b>Student ID</b></td>
+        <td width="200px"><b>First Name</b></td>
+        <td width="200px"><b>Last Name</b></td>
+    </tr>
+    {% for item in roster_table: %}
+    <tr>
+        <td width="200px">{{ item[0] }}</td>
+        <td width="200px">{{ item[1] }}</td>
+        <td width="200px">{{ item[2] }}</td>
+        
+        </tr>
+    
+    {% endfor %}
+</table><br><br>
+
+<h5>Quiz Assignments</h5>
+<table width="600px" border="1">
+    <tr>
+        <td width="200px"><b>Quiz ID</b></td>
+        <td width="200px"><b>Subject</b></td>
+        <td width="200px"><b>Number of Questions</b></td>
+        <td width="200px"><b>Due Date</b></td>
+        
+    </tr>
+    {% for item in quiz_table: %}
+    <tr>
+        <td width="200px">{{ item[0] }}</td>
+        <td width="200px">{{ item[1] }}</td>
+        <td width="200px">{{ item[2] }}</td>
+        <td width="200px">{{ item[3] }}</td>
+        
+        
+        </tr>
+    
+    {% endfor %}
+</table><br><br>
+
+
+<h5>All Results</h5>
+<table width="600px" border="1">
+    <tr>
+        <td width="200px"><b>Result ID</b></td>
+        <td width="200px"><b>Student ID</b></td>
+        <td width="200px"><b>Quiz ID</b></td>
+        <td width="200px"><b>Result</b></td>
+    </tr>
+    {% for item in result_table: %}
+    <tr>
+        <td width="200px">{{ item[0] }}</td>
+        <td width="200px">{{ item[1] }}</td>
+        <td width="200px">{{ item[2] }}</td>
+        <td width="200px">{{ item[3] }}</td>
+        
+        </tr>
+    
+    {% endfor %}
+</table>
+
+
+{% endblock main %}
+
+

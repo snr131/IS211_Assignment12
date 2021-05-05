@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Grade Book App</h1>
+    </head>
+    <form action="/login" method="post">
+        {{ form.csrf_token() }}
+        {{ form.username.label }}
+        {{ form.username }}
+        {{ form.password.label }}
+        {{ form.password }}
+        {{ form.submit }}
+    </form><br><br>
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <p class=flashes>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    </p>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+</html>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+
+
+<p>Upon adding a new student, a unique ID will be automatically assigned.</p>
+<form action="/student/add" method="post">
+    {{ form.csrf_token() }}
+    {{ form.first_name.label }}
+    {{ form.first_name }}
+    {{ form.last_name.label }}
+    {{ form.last_name }}
+    {{ form.submit }}
+</form><br><br>
+
+
+{% endblock main %}

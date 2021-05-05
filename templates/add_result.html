@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <p class=flashes>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    </p>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+
+<p>Upon adding a new grade result, a unique result ID will be automatically assigned.</p>
+<form action="/result/add" method="post">
+    {{ form.csrf_token() }}
+    {{ form.student_id.label }}
+    {{ form.student_id }}
+    {{ form.quiz_id.label }}
+    {{ form.quiz_id }}
+    {{ form.result.label }}
+    {{ form.result }}
+    {{ form.submit }}
+</form>
+
+
+
+{% endblock main %}
