@@ -7,17 +7,17 @@ from markupsafe import escape
 @app.route('/')
 @app.route('/dashboard')
 def dashboard():
-    if session['username'] == 'admin':
-        if session['password'] == 'password':
+    if 'username' in session:
+        if session['username'] == 'admin' and session['password'] == 'password':
 
             with engine.connect() as con:
                 roster_table = con.execute('SELECT * FROM students')
                 quiz_table = con.execute('SELECT * FROM quizzes')
                 result_table = con.execute('SELECT * FROM results')
                 return render_template('dashboard.html', roster_table=roster_table, quiz_table=quiz_table, result_table=result_table, current_user=escape(session['username']))
-
+        
     else:
-        flash('Incorrect username and/or password. You are not logged in.')
+        flash('You are not logged in.')
         return redirect('/login')
 
 

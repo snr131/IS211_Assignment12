@@ -24,15 +24,21 @@ with open('schema.sql') as file:
             engine.execute(text(statement))
 
 
+from routes import * 
+
+session = Session(engine)
+
+
+
 Base = automap_base()
 Base.prepare(engine, reflect=True)
 Student = Base.classes.students
 Quiz = Base.classes.quizzes
 Result = Base.classes.results
-session = Session(engine)
 
 
-from routes import *
+
+
 
 
 if __name__ == '__main__':
