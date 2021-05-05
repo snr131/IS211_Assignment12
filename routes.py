@@ -8,7 +8,10 @@ from markupsafe import escape
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
-        if session['username'] == 'admin' and session['password'] == 'password':
+        username = session['username']
+        password = session['password']
+        if username == 'admin' and password == 'password':
+
             
             with engine.connect() as con:
                 roster_table = con.execute('SELECT * FROM students')
@@ -16,13 +19,8 @@ def dashboard():
                 result_table = con.execute('SELECT * FROM results')
                 return render_template('dashboard.html', roster_table=roster_table, quiz_table=quiz_table, result_table=result_table, current_user=escape(session['username']))
 
-        else:
-            flash('You are not logged in.')
-            return redirect(url_for('login'))
-
-        
-        return render_template('dashboard.html')
-
+    flash('You are not logged in.')
+    return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
